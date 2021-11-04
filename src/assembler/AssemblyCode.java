@@ -6,54 +6,101 @@
  */
 package assembler;
 public class AssemblyCode {
-    
     String fullCode;
     int n;
     String[] lines;
     String[] label;
     Instruction[] instructions;
-    String[] Registers = { "$zero" , "$at", "$v0", "$v1", "$a0", "$a1", "$a2",
-                           "$a3", "$t0", "$t1", "$t2", "$t3", "$t4", "$t5", "$t6",
-                           "$t7", "$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6",
-                           "$s7", "$t8", "$t9", "$k0", "$k1", "$gp", "$sp", "$fp",
-                           "$ra"};
-    String[] RTypeMnemonics = { "add 00 32","sub 00 34","and 00 36","or 00 37",
-                           "nor 00 39" ,"slt 00 42","mult 00 24","div 00 26"};
-                             //   "sll 00 00" , "srl 00 02" ,
-                                
-    String[] ITypeMnemonics = { "beq 4" , "addi 8" , "lw 35" , "sw 43" } ;//,"bne 5","andi 12","ori 13","xori 14"};
+    String[] Registers = {
+        "$zero",
+        "$at",
+        "$v0",
+        "$v1",
+        "$a0",
+        "$a1",
+        "$a2",
+        "$a3",
+        "$t0",
+        "$t1",
+        "$t2",
+        "$t3",
+        "$t4",
+        "$t5",
+        "$t6",
+        "$t7",
+        "$s0",
+        "$s1",
+        "$s2",
+        "$s3",
+        "$s4",
+        "$s5",
+        "$s6",
+        "$s7",
+        "$t8",
+        "$t9",
+        "$k0",
+        "$k1",
+        "$gp",
+        "$sp",
+        "$fp",
+        "$ra"
+    };
+
+    // ignored   "sll 00 00" , "srl 00 02" ,
+    String[] RTypeMnemonics = {
+        "add 00 32",
+        "sub 00 34",
+        "and 00 36",
+        "or 00 37",
+        "nor 00 39" ,
+        "slt 00 42",
+        "mult 00 24",
+        "div 00 26"
+    };
+
+    //ignored "bne 5","andi 12","ori 13","xori 14"};
+    String[] ITypeMnemonics = {
+        "beq 4" ,
+        "addi 8" ,
+        "lw 35" ,
+        "sw 43"
+    };
 
     String errors = "";
     
-    AssemblyCode(String input){
-
+    AssemblyCode(String input) {
         this.fullCode = input;
         this.n = this.fillLines();        
         this.label = new String[n];
         this.instructions = new Instruction[n];
-        for(int i =0 ; i < n ; i++){
+        for (int i = 0; i < n; i++){
             this.label[i] = "@NO LABEL@";
             this.instructions[i] = new Instruction();
         }
-        if(!this.buildAndRemoveLabels())
+
+        if (!this.buildAndRemoveLabels()) {
             errors += "There is something wrong with the label" + "\n";
-        for(int i = 0 ; i < n ; i++){
+        }
+
+        for (int i = 0 ; i < n ; i++) {
             this.convertAssemblyToMachine(this.lines[i], i);           
         }
     }
-    int fillLines(){
+
+    int fillLines() {
         String[] temp = this.fullCode.split("\n");
-        int j=0;
-        for(int i = 0 ; i < temp.length ; i++){
+        int j = 0;
+        for(int i = 0; i < temp.length; i++) {
             temp[i] = temp[i].split("#")[0].trim();
-            if(!temp[i].isEmpty())
-                j++;              
+            if (!temp[i].isEmpty()) {
+                j++;
+            }
         }
         this.lines = new String[j];
         int k = 0;
         int i = 0;
-        while(k < j){
-           if(!temp[i].isEmpty()){
+        while (k < j) {
+           if (!temp[i].isEmpty()) {
                this.lines[k] = temp[i].trim();
                k++;
            }
@@ -61,33 +108,39 @@ public class AssemblyCode {
         }            
         return this.lines.length;
     }
-    void printCode(){
-        for(int i=0; i<n ; i++){
+
+    void printCode() {
+        for (int i=0; i < n; i++) {
             String str = "";
             str = "" + (i+1) + " " + this.lines[i] + ";\t";
-            if(str.length()<"9 addi $t5 , $t4 , 500;	 ".length())
-                str= str+"\t";
-            str = str+" Decoded : ";
+            if (str.length() < "9 addi $t5 , $t4 , 500;	 ".length()) {
+                str = str + "\t";
+            }
+            str = str + " Decoded : ";
             System.out.print(str);
             this.instructions[i].printInstruction();
         }       
     }
+
     void printLabels(){
-        for(int i = 0 ; i <n ; i++)
+        for (int i = 0; i <n; i++) {
             System.out.println(this.label[i]);
+        }
     }
-    boolean buildAndRemoveLabels(){
-        for(int i = 0 ; i<n ; i++){
-            if(this.lines[i].split(":").length==2){
+
+    boolean buildAndRemoveLabels() {
+        for (int i = 0; i < n; i++) {
+            if (this.lines[i].split(":").length == 2) {
                 this.label[i] = this.lines[i].split(":")[0].trim();
                 this.lines[i] = this.lines[i].split(":")[1].trim();
-            } else if(this.lines[i].split(":").length>2)
+            } else if (this.lines[i].split(":").length > 2) {
                 return false;
+            }
         }
         return true;
     }
-    //Following funcion is very simply made, taking it for granted
-    //that there was no syntax error in the code
+
+    //Following function assumes there was no syntax error
     void convertAssemblyToMachine(String ins, int id){
         if(ins.equalsIgnoreCase("NOP")){
             this.instructions[id].setType('N');
@@ -300,45 +353,52 @@ public class AssemblyCode {
             System.out.print(errors);
     }
     
-    boolean containsOnlyNumbers(String str){
-        //It can't contain only numbers if it's null or empty...
-        if (str == null || str.length() == 0)
+    boolean containsOnlyNumbers(String str) {
+        if (str == null || str.length() == 0) {
             return false;
-        for (int i = 0; i < str.length(); i++){
-        //If we find a non-digit character we return false.
-            if (  !Character.isDigit(str.charAt(i)) && str.charAt(0)!='-' )
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            //If we find a non-digit character we return false.
+            if (!Character.isDigit(str.charAt(i)) && str.charAt(0)!='-') {
                 return false;
+            }
         }
         return true;
     }
     
-    int regNumOf(String reg){
-        for(int i = 0 ; i < this.Registers.length ; i++){
-            if(this.Registers[i].equalsIgnoreCase(reg))
+    int regNumOf(String reg) {
+        for (int i = 0 ; i < this.Registers.length ; i++) {
+            if (this.Registers[i].equalsIgnoreCase(reg)) {
                 return i;
+            }
         }
         return -1;
     }
-    boolean checkRType(String mne){
-        for(int i = 0 ; i < this.RTypeMnemonics.length ; i++){
-            if(mne.equalsIgnoreCase(this.RTypeMnemonics[i].split(" ")[0]))
-               return true;
+
+    boolean checkRType(String mne) {
+        for (int i = 0 ; i < this.RTypeMnemonics.length ; i++) {
+            if (mne.equalsIgnoreCase(this.RTypeMnemonics[i].split(" ")[0])) {
+                return true;
+            }
         }
         return false;
     }
-    boolean checkIType(String mne){
-        for(int i = 0 ; i < this.ITypeMnemonics.length ; i++){
-            if(mne.equalsIgnoreCase(this.ITypeMnemonics[i].split(" ")[0]))
-               return true;
+
+    boolean checkIType(String mne) {
+        for (int i = 0 ; i < this.ITypeMnemonics.length; i++) {
+            if (mne.equalsIgnoreCase(this.ITypeMnemonics[i].split(" ")[0])) {
+                return true;
+            }
         }       
         return false;
     }
-    int returnLine(String str)
-    {
-        for(int i =0 ; i < this.label.length ; i++)
-        {
-            if(this.label[i].equalsIgnoreCase(str));
-            return i;
+
+    int returnLine(String str) {
+        for (int i=0; i < this.label.length ; i++) {
+            if (this.label[i].equalsIgnoreCase(str)) {
+                return i;
+            }
         }
         return -1;
     }
