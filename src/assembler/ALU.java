@@ -5,51 +5,37 @@
  */
 package assembler;
 import java.io.Serializable;
-public class ALU implements Serializable{
-    
-    int function;
-    int ALUOp;    
-    
-    ALU()
-    {
-        this.function = -1;
-        this.ALUOp = -1;
-    }
-    int process(int A,int B , int f , int al)
-    {
-        this.function = f;
-        this.ALUOp = al;
-                
-        if(this.ALUOp == 0)
-        {            
+
+public class ALU implements Serializable {
+    ALU() {}
+
+    int process(int A, int B, int function, int ALUOp) {
+        if (ALUOp == 0) {
             return A + B;
-        }
-        
-        if(this.ALUOp == 1)
+        } else if (ALUOp == 1) {
             return A - B;
-        
-        if(this.ALUOp == 2)
-        {
-            if(this.function==24)
-                return A*B;
-            if(this.function==26)
-                return A/B;
-            if(this.function==32)
-                return A+B;
-            if(this.function==34)
-                return A-B;
-            if(this.function==36)
-                return A&B;
-            if(this.function==37)
-                return A|B;
-            if(this.function==39)
-                return ~(A|B);
-            if(this.function==42)
-            {
-                if(A<B)
-                    return 1;
-                else
-                    return 0;
+        } else if (ALUOp == 2) {
+            switch (function) {
+                case 24:
+                    return A*B;
+                case 26:
+                    return A/B;
+                case 32:
+                    return A+B;
+                case 34:
+                    return A-B;
+                case 36:
+                    return A&B;
+                case 37:
+                    return A|B;
+                case 39:
+                    return ~(A|B);
+                case 42:
+                    if (A<B) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
             }
         }
         return 0;
