@@ -157,7 +157,7 @@ public class MFrame implements Serializable {
             this.idExPipeline.WB = this.cUnit.WB;
             this.idExPipeline.MEM = this.cUnit.MEM;
             this.idExPipeline.ALUOp = this.cUnit.ALUOp;
-            this.idExPipeline.ALUSrc = this.cUnit.ALUsource;
+            this.idExPipeline.ALUSrc = this.cUnit.ALUSource;
             this.idExPipeline.RegDest = this.cUnit.RegDest;
             this.idExPipeline.PC = this.ifIdPipeline.PC;
             this.idExPipeline.rsValue = this.register[this.ifIdPipeline.Instruction.rs];
