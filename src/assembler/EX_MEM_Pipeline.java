@@ -6,7 +6,7 @@
  */
 package assembler;
 import java.io.Serializable;
-public class EX_MEM_Pipeline implements Serializable{
+public class EX_MEM_Pipeline implements Serializable {
 
     WB WB;
     MEM MEM;
@@ -17,15 +17,12 @@ public class EX_MEM_Pipeline implements Serializable{
     int destReg;
     String iString;
 
-    EX_MEM_Pipeline() {
-    }
-
     void Flush() {
-        this.WB.MemToReg = false;
-        this.WB.RegWrite = false;
-        this.MEM.MemRead = false;
-        this.MEM.MemWrite = false;
-        this.MEM.branch = false;
-        this.iString = "NOP";
+        WB.MemToReg = false;
+        WB.RegWrite = false;
+        MEM.MemRead = false;
+        MEM.MemWrite = false;
+        MEM.branch = false;
+        iString = "NOP";
     }
 }

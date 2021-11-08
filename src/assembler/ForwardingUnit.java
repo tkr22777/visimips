@@ -1,13 +1,12 @@
-
 /**
- *
  * @author
  * Tahsin Kabir
  * M Tahmid Bari
  */
 package assembler;
 import java.io.Serializable;
-public class ForwardingUnit implements Serializable{
+
+public class ForwardingUnit implements Serializable {
 
     int rs;
     int rt;
@@ -21,40 +20,40 @@ public class ForwardingUnit implements Serializable{
     boolean RegWriteMemWbFlag = false;
 
     ForwardingUnit() {
-        this.rs = -2;
-        this.rt = -2;
+        rs = -2;
+        rt = -2;
 
-        this.RegWriteExMemAdd = -1;
-        this.RegWriteMemWbValue = 0;
-        this.RegWriteMemWbAdd = -1;
-        this.RegWriteExMemValue = 0;
-        this.RegWriteExMemFlag = false;
-        this.RegWriteMemWbFlag = false;
+        RegWriteExMemAdd = -1;
+        RegWriteMemWbValue = 0;
+        RegWriteMemWbAdd = -1;
+        RegWriteExMemValue = 0;
+        RegWriteExMemFlag = false;
+        RegWriteMemWbFlag = false;
     }
-    int valueMuxA() {
 
-        if (this.rs == this.RegWriteExMemAdd && this.RegWriteExMemFlag) {
-            return this.RegWriteExMemValue;
-        } else if (this.rs == this.RegWriteMemWbAdd && this.RegWriteMemWbFlag) {
-            return this.RegWriteMemWbValue;
+    int valueMuxA() {
+        if (rs == RegWriteExMemAdd && RegWriteExMemFlag) {
+            return RegWriteExMemValue;
+        } else if (rs == RegWriteMemWbAdd && RegWriteMemWbFlag) {
+            return RegWriteMemWbValue;
         } else {
-            return this.rsValue;
+            return rsValue;
         }
     }
-    int valueMuxB() {
 
-        if (this.rt == this.RegWriteExMemAdd && this.RegWriteExMemFlag) {
-            return this.RegWriteExMemValue;
-        } else if (this.rt == this.RegWriteMemWbAdd && this.RegWriteMemWbFlag) {
-            return this.RegWriteMemWbValue;
+    int valueMuxB() {
+        if (rt == RegWriteExMemAdd && RegWriteExMemFlag) {
+            return RegWriteExMemValue;
+        } else if (rt == RegWriteMemWbAdd && RegWriteMemWbFlag) {
+            return RegWriteMemWbValue;
         } else {
-            return this.rtValue;
+            return rtValue;
         }
     }
     int selectMuxA(){
-        if (this.rs == this.RegWriteExMemAdd && this.RegWriteExMemFlag) {
+        if (rs == RegWriteExMemAdd && RegWriteExMemFlag) {
             return 2;
-        } else if (this.rs == this.RegWriteMemWbAdd && this.RegWriteMemWbFlag) {
+        } else if (rs == RegWriteMemWbAdd && RegWriteMemWbFlag) {
             return 1;
         } else {
             return 0;
@@ -62,9 +61,9 @@ public class ForwardingUnit implements Serializable{
     }
     int selectMuxB() {
 
-        if (this.rt == this.RegWriteExMemAdd && this.RegWriteExMemFlag) {
+        if (rt == RegWriteExMemAdd && RegWriteExMemFlag) {
             return 2;
-        } else if (this.rt == this.RegWriteMemWbAdd && this.RegWriteMemWbFlag) {
+        } else if (rt == RegWriteMemWbAdd && RegWriteMemWbFlag) {
             return 1;
         } else {
             return 0;

@@ -1,15 +1,12 @@
-
 package assembler;
-
 import java.io.Serializable;
-
 /**
- *
  * @author
  * Tahsin Kabir
  * M Tahmid Bari
  */
-public class HazardDetectionUnit implements Serializable{
+
+public class HazardDetectionUnit implements Serializable {
 
     boolean idExMemRead;
     int idExRt;
@@ -21,28 +18,28 @@ public class HazardDetectionUnit implements Serializable{
     int branchAddress;
 
     HazardDetectionUnit() {
-        this.idExMemRead = false;
-        this.idExRt = -10;
-        this.ifIdRs = -11;
-        this.ifIdRt = -12;
-        this.ifType = 'N';
-        this.ALUzero = false;
-        this.branch = false;
-        this.branchAddress = -1;
+        idExMemRead = false;
+        idExRt = -10;
+        ifIdRs = -11;
+        ifIdRt = -12;
+        ifType = 'N';
+        ALUzero = false;
+        branch = false;
+        branchAddress = -1;
     }
 
     //will return true if hazard has occurd
     //Hazard can be reduced by checkhing the type of ins..there is something wrong with the logic    
     boolean checkDataHazard() {
-        if (this.idExMemRead) {
-            if (this.ifType == 'R') {
-                if (this.idExRt == this.ifIdRs || this.idExRt == this.ifIdRt) {
+        if (idExMemRead) {
+            if (ifType == 'R') {
+                if (idExRt == ifIdRs || idExRt == ifIdRt) {
                     return true;
                 } else {
                     return false;
                 }
-            } else if (this.ifType == 'I') {
-                if (this.idExRt == this.ifIdRs) {
+            } else if (ifType == 'I') {
+                if (idExRt == ifIdRs) {
                     return true;
                 } else {
                     return false;
@@ -56,7 +53,7 @@ public class HazardDetectionUnit implements Serializable{
     }
 
     boolean checkBranchHazard() {
-        if (this.ALUzero && this.branch) {
+        if (ALUzero && branch) {
             return true;
         } else {
             return false;
