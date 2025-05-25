@@ -4,21 +4,40 @@
  * M Tahmid Bari
  */
 package assembler;
+
 import java.io.Serializable;
 
 public class ControlUnit implements Serializable {
+
     int op;
     WB WB;
     MEM MEM;
     int ALUOp;
     boolean ALUSource;
     boolean RegDest;
-    
-    ControlUnit(int x) {
-        this.op = x;
-        this.WB = new WB();
-        this.MEM = new MEM();
 
+    /**
+     * Original constructor for backward compatibility
+     */
+    ControlUnit(int x) {
+        this(x, new WB(), new MEM());
+    }
+
+    /**
+     * Constructor with dependency injection for better testability
+     */
+    public ControlUnit(int x, WB wb, MEM mem) {
+        this.op = x;
+        this.WB = wb;
+        this.MEM = mem;
+
+        configureControlSignals();
+    }
+
+    /**
+     * Separate method for control signal configuration to improve testability
+     */
+    private void configureControlSignals() {
         if (this.op == -1) { //NOP
             this.ALUOp = -1;
             this.ALUSource = false;
@@ -32,7 +51,7 @@ public class ControlUnit implements Serializable {
             this.ALUOp = 2;
             this.ALUSource = false;
             this.RegDest = true;
-        }  else if (op > 0) { //I/j type :)
+        } else if (op > 0) { //I/j type :)
             if (op == 4) {
                 this.WB.RegWrite = false;
                 this.WB.MemToReg = false;
@@ -52,7 +71,7 @@ public class ControlUnit implements Serializable {
                 this.ALUSource = true;
                 this.RegDest = false;
             } else if (op == 43) { //Store
-                this.WB.RegWrite = false;                
+                this.WB.RegWrite = false;
                 this.WB.MemToReg = false;
                 this.MEM.MemRead = false;
                 this.MEM.MemWrite = true;
@@ -61,14 +80,14 @@ public class ControlUnit implements Serializable {
                 this.ALUSource = true;
                 this.RegDest = false;
             } else if (op == 8) { //addi
-                this.WB.RegWrite = true;                
+                this.WB.RegWrite = true;
                 this.WB.MemToReg = false;
                 this.MEM.MemRead = false;
                 this.MEM.MemWrite = false;
                 this.MEM.branch = false;
                 this.ALUOp = 0;
                 this.ALUSource = true;
-                this.RegDest = false;         
+                this.RegDest = false;
             }
         }
     }
