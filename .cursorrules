@@ -27,8 +27,15 @@
 - **Critical**: Run `make test` after ANY code modification
 - All core classes (ALU, WB, MEM, Pipeline stages) have comprehensive test coverage
 - Tests protect against regressions during refactoring
-- 46 tests currently cover all major functionality
+- 64 tests currently cover all major functionality
 - Never skip testing - it's the safety net for this legacy codebase
+
+## Git Commit Guidelines
+- Use short, summarized commit messages (50 characters or less for title)
+- Group related changes into logical commits
+- Commit categories: dependency injection, tests, build system, bug fixes
+- Make multiple commits for different types of changes
+- Example: "Add dependency injection to core pipeline components"
 
 ## Legacy Code Considerations
 - This is a 2010-era codebase with historical value
