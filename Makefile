@@ -77,7 +77,10 @@ ifneq ($(TEST_FILES),)
 		assembler.WBTest \
 		assembler.MEMTest \
 		assembler.MEM_WB_PipelineTest \
-		assembler.IF_ID_PipelineTest
+		assembler.ControlUnitTest \
+		assembler.ForwardingUnitTest \
+		assembler.HazardDetectionUnitTest \
+		assembler.ID_EX_PipelineTest
 	@echo "Test run complete!"
 else
 	@echo "No test files found. Skipping tests."
