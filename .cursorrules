@@ -1,0 +1,59 @@
+# ViSiMIPS Java Coding Guidelines
+
+## Code Style and Safety
+- **ALWAYS run `make test` after making any code changes** to ensure no functionality is broken
+- Use descriptive variable names (avoid single letters except for loop counters)
+- Add proper access modifiers (private, public, protected) to all fields and methods
+- Extract magic numbers into named constants with descriptive names
+- Add single-line Javadoc comments for public methods and classes
+- Use consistent indentation (4 spaces, no tabs)
+- Remove unused imports and template comments
+- Prefer composition over inheritance where appropriate
+
+## Variable Naming Conventions
+- Use camelCase for variables and methods: `currentInstruction`, `executeStage()`
+- Use PascalCase for classes: `PipelineStage`, `ALUOperation`
+- Use UPPER_SNAKE_CASE for constants: `MAX_REGISTERS`, `DEFAULT_PC_VALUE`
+- Use descriptive names that explain purpose: `instructionMemory` not `mem`
+
+## Method and Class Structure
+- Keep methods focused on single responsibility
+- Add proper exception handling where needed
+- Use meaningful return types and parameter names
+- Group related functionality into logical classes
+- Maintain clear separation between UI and business logic
+
+## Testing Strategy
+- **Critical**: Run `make test` after ANY code modification
+- All core classes (ALU, WB, MEM, Pipeline stages) have comprehensive test coverage
+- Tests protect against regressions during refactoring
+- 46 tests currently cover all major functionality
+- Never skip testing - it's the safety net for this legacy codebase
+
+## Legacy Code Considerations
+- This is a 2010-era codebase with historical value
+- Preserve original architecture and design patterns where possible
+- Make incremental improvements rather than wholesale rewrites
+- Document any significant changes in commit messages
+- Maintain compatibility with original NetBeans project structure
+
+## UI and Compatibility
+- Original UI code (2010 Swing patterns) should be preserved for compatibility
+- Known issue: Black screen on some modern Java/graphics combinations
+- Use `make run-debug` for compatibility issues
+- Fixed window sizing (1024x663) is intentional for visualization grid
+- Avoid modern layout managers that might break the original design
+
+## Build and Development
+- Use the Makefile for all build operations: `make`, `make test`, `make run`
+- Dependencies (JUnit, Hamcrest) are automatically downloaded
+- Clean builds with `make clean` if encountering issues
+- The .gitignore properly excludes compiled .class files
+
+## File Organization
+- Source code: `src/assembler/`
+- Tests: `test/assembler/`
+- Build artifacts: `build/` (auto-created, gitignored)
+- Dependencies: `lib/` (auto-created, gitignored)
+
+Remember: **Test early, test often** - `make test` is your friend! 
