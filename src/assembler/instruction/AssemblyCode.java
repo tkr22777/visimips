@@ -4,7 +4,7 @@
  * Tahsin Kabir
  * M Tahmid Bari
  */
-package assembler;
+package assembler.instruction;
 public class AssemblyCode {
     String fullCode;
     int n;

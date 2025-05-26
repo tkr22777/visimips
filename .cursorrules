@@ -50,6 +50,20 @@
 - Document any significant changes in commit messages
 - Maintain compatibility with original NetBeans project structure
 
+## Large Task Planning and Execution
+- **ALWAYS plan before executing** any task requiring significant file movements or structural changes
+- Break large tasks into multiple logical steps with clear dependencies
+- Execute steps one by one, testing after each step to ensure stability
+- For package reorganization or major refactoring:
+  1. Analyze current structure and dependencies
+  2. Create detailed step-by-step plan with file categorization
+  3. Execute moves one package/category at a time
+  4. Update package declarations and imports incrementally
+  5. Run tests after each step to catch issues early
+  6. Update build system and documentation as needed
+- Never attempt large structural changes in a single step
+- Always maintain working state between steps
+
 ## UI and Compatibility
 - Original UI code (2010 Swing patterns) should be preserved for compatibility
 - Known issue: Black screen on some modern Java/graphics combinations
