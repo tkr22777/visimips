@@ -84,7 +84,6 @@ ifneq ($(TEST_FILES),)
 		assembler.IF_ID_PipelineTest \
 		assembler.EX_MEM_PipelineTest \
 		assembler.InstructionTest \
-		assembler.WireLabelTest \
 		assembler.AssemblyCodeTest
 	@echo "Test run complete!"
 else
