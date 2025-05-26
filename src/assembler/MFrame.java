@@ -5,15 +5,15 @@
  */
 package assembler;
 
+import assembler.control.*;
+import assembler.instruction.Instruction;
+import assembler.pipeline.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import assembler.instruction.Instruction;
-import assembler.pipeline.*;
-import assembler.control.*;
 
 public class MFrame implements Serializable {
 
@@ -65,8 +65,8 @@ public class MFrame implements Serializable {
             //Following if block does the writing to the reg library for any reg write instruction.
             if (this.memRbPipeline.WB.RegWrite) {
                 if (this.memRbPipeline.WB.MemToReg) {
-                    WriteData = this.memRbPipeline.Mdata; 
-                }else {
+                    WriteData = this.memRbPipeline.Mdata;
+                } else {
                     WriteData = this.memRbPipeline.ALU_result;
                 }
                 this.register[this.memRbPipeline.destReg] = WriteData;
@@ -94,8 +94,8 @@ public class MFrame implements Serializable {
             //Here datas from EX/MEM pipeline will come to MEM/WB pipeline
             this.memRbPipeline.WB = this.exMemPipeline.WB;
             if (this.exMemPipeline.MEM.MemRead) {
-                this.memRbPipeline.Mdata = MEM[this.exMemPipeline.ALU_result]; 
-            }else {
+                this.memRbPipeline.Mdata = MEM[this.exMemPipeline.ALU_result];
+            } else {
                 this.memRbPipeline.Mdata = 0;
             }
             if (this.exMemPipeline.MEM.MemWrite) {
@@ -140,8 +140,8 @@ public class MFrame implements Serializable {
 
             //following if else block selects the destination register for the next stage
             if (this.idExPipeline.RegDest) {
-                this.exMemPipeline.destReg = this.idExPipeline.rd; 
-            }else {
+                this.exMemPipeline.destReg = this.idExPipeline.rd;
+            } else {
                 this.exMemPipeline.destReg = this.idExPipeline.rt;
             }
 
@@ -181,8 +181,8 @@ public class MFrame implements Serializable {
             this.idExPipeline.bitString = this.ifIdPipeline.Instruction.getBitString();
 
             if (this.ifIdPipeline.Instruction.rd >= 0) {
-                this.idExPipeline.rd = this.ifIdPipeline.Instruction.rd; 
-            }else {
+                this.idExPipeline.rd = this.ifIdPipeline.Instruction.rd;
+            } else {
                 this.idExPipeline.rd = Integer.parseInt(this.ifIdPipeline.Instruction.getBitString().substring(16, 21), 2);
             }
 
@@ -213,8 +213,8 @@ public class MFrame implements Serializable {
         }
 
         if (ins == null || ins.type == 'U' || ins.type == 'N') {
-            this.ifIdPipeline = null; 
-        }else {
+            this.ifIdPipeline = null;
+        } else {
             this.ifIdPipeline = new IF_ID_Pipeline(ins, PC + 4);
         }
 

@@ -73,7 +73,7 @@ ifneq ($(TEST_FILES),)
 	@echo "Test compilation complete."
 	@echo "Running all tests..."
 	@java -cp $(CLASSES_DIR):$(TEST_CLASSES_DIR):$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore \
-		assembler.ALUTest \
+		assembler.pipeline.ALUTest \
 		assembler.pipeline.WBTest \
 		assembler.pipeline.MEMTest \
 		assembler.pipeline.MEM_WB_PipelineTest \
