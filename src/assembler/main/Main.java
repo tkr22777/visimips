@@ -3,13 +3,14 @@
  * and open the template in the editor.
  */
 
-package assembler;
+package assembler.main;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import assembler.MainFrame;
 /**
  *
  * @author 'SIN
