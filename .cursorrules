@@ -34,6 +34,9 @@
 - Focus on testable units: pipeline registers, control units, ALU, instruction parsing, forwarding logic
 
 ## Git Commit Guidelines
+- **ALWAYS ask for user approval before committing any changes to a branch**
+- Never commit without explicit user permission and confirmation
+- Present a summary of changes and wait for approval before running git commit
 - Use short, summarized commit messages (50 characters or less for title)
 - Group related changes into logical commits
 - Commit categories: dependency injection, tests, build system, bug fixes

@@ -2,10 +2,7 @@ package assembler;
 
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.After;
 import static org.junit.Assert.*;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 /**
  * Tests for Instruction class
@@ -13,25 +10,10 @@ import java.io.PrintStream;
 public class InstructionTest {
 
     private Instruction instruction;
-    private final PrintStream originalOut = System.out;
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
         instruction = new Instruction();
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
-
-    private void suppressConsoleOutput() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    private void restoreConsoleOutput() {
-        System.setOut(originalOut);
     }
 
     @Test
@@ -71,14 +53,11 @@ public class InstructionTest {
     public void testOpInvalidValues() {
         // Test invalid op codes (should not be set)
         int originalOp = instruction.getOp();
-
-        suppressConsoleOutput(); // Suppress "Op not Set" messages
         instruction.setOp(-1);
         assertEquals("Op should not change for -1", originalOp, instruction.getOp());
 
         instruction.setOp(64);
         assertEquals("Op should not change for 64", originalOp, instruction.getOp());
-        restoreConsoleOutput();
     }
 
     @Test
@@ -94,14 +73,11 @@ public class InstructionTest {
     @Test
     public void testRsInvalidValues() {
         int originalRs = instruction.getRs();
-
-        suppressConsoleOutput(); // Suppress "Rs not Set" messages
         instruction.setRs(-1);
         assertEquals("Rs should not change for -1", originalRs, instruction.getRs());
 
         instruction.setRs(32);
         assertEquals("Rs should not change for 32", originalRs, instruction.getRs());
-        restoreConsoleOutput();
     }
 
     @Test
@@ -117,14 +93,11 @@ public class InstructionTest {
     @Test
     public void testRtInvalidValues() {
         int originalRt = instruction.getRt();
-
-        suppressConsoleOutput(); // Suppress "Rt not Set" messages
         instruction.setRt(-1);
         assertEquals("Rt should not change for -1", originalRt, instruction.getRt());
 
         instruction.setRt(32);
         assertEquals("Rt should not change for 32", originalRt, instruction.getRt());
-        restoreConsoleOutput();
     }
 
     @Test
@@ -140,14 +113,11 @@ public class InstructionTest {
     @Test
     public void testRdInvalidValues() {
         int originalRd = instruction.getRd();
-
-        suppressConsoleOutput(); // Suppress "Rd not Set" messages
         instruction.setRd(-1);
         assertEquals("Rd should not change for -1", originalRd, instruction.getRd());
 
         instruction.setRd(32);
         assertEquals("Rd should not change for 32", originalRd, instruction.getRd());
-        restoreConsoleOutput();
     }
 
     @Test
