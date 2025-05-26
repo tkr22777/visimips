@@ -27,8 +27,11 @@
 - **Critical**: Run `make test` after ANY code modification
 - All core classes (ALU, WB, MEM, Pipeline stages) have comprehensive test coverage
 - Tests protect against regressions during refactoring
-- 64 tests currently cover all major functionality
+- 134 tests currently cover all major functionality
 - Never skip testing - it's the safety net for this legacy codebase
+- **First Pass Testing Rule**: Only create unit tests for components that are easy to test (business logic, data structures, utilities)
+- Skip testing for UI components (Main, MainFrame, MFrame, PipelineFrame, PipelinePanel) in first pass
+- Focus on testable units: pipeline registers, control units, ALU, instruction parsing, forwarding logic
 
 ## Git Commit Guidelines
 - Use short, summarized commit messages (50 characters or less for title)
