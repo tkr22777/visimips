@@ -1,6 +1,7 @@
-package assembler;
+package assembler.pipeline;
 
 import java.io.Serializable;
+import assembler.instruction.Instruction;
 
 /**
  *

@@ -1,4 +1,4 @@
-package assembler;
+package assembler.pipeline;
 
 import org.junit.Test;
 import org.junit.Before;

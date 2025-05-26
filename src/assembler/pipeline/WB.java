@@ -1,41 +1,34 @@
+package assembler.pipeline;
+import java.io.Serializable;
+
 /**
  *
  * @author 'SIN
  */
-package assembler;
-import java.io.Serializable;
-public class MEM implements Serializable {
-
-    boolean branch;
-    boolean MemRead;
-    boolean MemWrite;
-
+public class WB implements Serializable {
+    
+    boolean MemToReg;
+    boolean RegWrite;  
+    
     public String toString(int mode)
     {
         String str = "";
         if(mode==1){
-            if(MemRead)
+            if(RegWrite)
                 str += "True, ";
             else
                 str += "False, ";
-            if(MemWrite)
-                str += "True, ";
-            else
-                str += "False, ";
-            if(branch)
-                str += "True, ";
+
+            if(MemToReg)
+                str += "True";
             else
                 str += "False";
         }else if(mode==2){
-            if(MemRead)
+            if(RegWrite)
                 str += "1, ";
             else
                 str += "0, ";
-            if(MemWrite)
-                str += "1, ";
-            else
-                str += "0, ";
-            if(branch)
+            if(MemToReg)
                 str += "1";
             else
                 str += "0";
@@ -44,4 +37,5 @@ public class MEM implements Serializable {
         return str;
 
     }
+
 }

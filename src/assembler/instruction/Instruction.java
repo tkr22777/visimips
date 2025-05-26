@@ -18,9 +18,9 @@ public class Instruction implements Serializable {
     int shamt;
     int function;
     short offsetIJ;
-    String iString;
+    public String iString;
 
-    Instruction() {
+    public Instruction() {
         type = 'U';
         op = -1;
         rs = -1;

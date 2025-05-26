@@ -1,8 +1,9 @@
-package assembler;
+package assembler.pipeline;
 
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
+import assembler.instruction.Instruction;
 
 /**
  * Tests for IF_ID_Pipeline register

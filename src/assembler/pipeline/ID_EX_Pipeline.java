@@ -1,4 +1,4 @@
-package assembler;
+package assembler.pipeline;
 
 import java.io.Serializable;
 
