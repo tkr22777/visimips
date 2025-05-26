@@ -8,11 +8,11 @@ import java.io.Serializable;
 
 public class MEM_WB_Pipeline implements Serializable {
 
-    WB WB;
-    int ALU_result;
-    int Mdata;
-    int destReg;
-    String iString;
+    public WB WB;
+    public int ALU_result;
+    public int Mdata;
+    public int destReg;
+    public String iString;
 
     /**
      * Default constructor

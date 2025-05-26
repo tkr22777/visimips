@@ -10,7 +10,7 @@ public class AssemblyCode {
     int n;
     String[] lines;
     String[] label;
-    Instruction[] instructions;
+    public Instruction[] instructions;
     String[] Registers = {
         "$zero",
         "$at",
@@ -68,7 +68,7 @@ public class AssemblyCode {
 
     String errors = "";
     
-    AssemblyCode(String input) {
+    public AssemblyCode(String input) {
         this.fullCode = input;
         this.n = this.fillLines();        
         this.label = new String[n];
@@ -109,7 +109,7 @@ public class AssemblyCode {
         return this.lines.length;
     }
 
-    void printCode() {
+    public void printCode() {
         for (int i=0; i < n; i++) {
             String str = "";
             str = "" + (i+1) + " " + this.lines[i] + ";\t";

@@ -3,23 +3,25 @@
  * Tahsin Kabir
  * M Tahmid Bari
  */
-package assembler;
+package assembler.control;
 
+import assembler.pipeline.MEM;
+import assembler.pipeline.WB;
 import java.io.Serializable;
 
 public class ControlUnit implements Serializable {
 
-    int op;
-    WB WB;
-    MEM MEM;
-    int ALUOp;
-    boolean ALUSource;
-    boolean RegDest;
+    public int op;
+    public WB WB;
+    public MEM MEM;
+    public int ALUOp;
+    public boolean ALUSource;
+    public boolean RegDest;
 
     /**
      * Original constructor for backward compatibility
      */
-    ControlUnit(int x) {
+    public ControlUnit(int x) {
         this(x, new WB(), new MEM());
     }
 

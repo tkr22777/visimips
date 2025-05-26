@@ -10,14 +10,14 @@ import java.io.Serializable;
 
 public class Instruction implements Serializable {
 
-    char type;
-    int op;
-    int rs;
-    int rt;
-    int rd;
-    int shamt;
-    int function;
-    short offsetIJ;
+    public char type;
+    public int op;
+    public int rs;
+    public int rt;
+    public int rd;
+    public int shamt;
+    public int function;
+    public short offsetIJ;
     public String iString;
 
     public Instruction() {
@@ -136,7 +136,7 @@ public class Instruction implements Serializable {
         this.offsetIJ = k;
     }
 
-    String getiString() {
+    public String getiString() {
         return this.iString;
     }
 

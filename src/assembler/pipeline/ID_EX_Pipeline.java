@@ -8,22 +8,22 @@ import java.io.Serializable;
  */
 public class ID_EX_Pipeline implements Serializable {
 
-    boolean RegDest;
-    boolean ALUSrc;
-    int ALUOp;
-    MEM MEM;
-    WB WB;
-    int PC;
-    int rs;
-    int rsValue;
-    int rt;
-    int rtValue;
-    int rd;
-    short Offset;
-    int i32Offset;
-    int function;
-    String iString;
-    String bitString;
+    public boolean RegDest;
+    public boolean ALUSrc;
+    public int ALUOp;
+    public MEM MEM;
+    public WB WB;
+    public int PC;
+    public int rs;
+    public int rsValue;
+    public int rt;
+    public int rtValue;
+    public int rd;
+    public short Offset;
+    public int i32Offset;
+    public int function;
+    public String iString;
+    public String bitString;
 
     /**
      * Default constructor
@@ -61,7 +61,7 @@ public class ID_EX_Pipeline implements Serializable {
         this.bitString = "";
     }
 
-    void Flush() {
+    public void Flush() {
         this.ALUSrc = false;
         this.RegDest = false;
         this.WB.MemToReg = false;

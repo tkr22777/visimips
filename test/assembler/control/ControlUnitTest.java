@@ -1,8 +1,10 @@
-package assembler;
+package assembler.control;
 
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
+import assembler.pipeline.WB;
+import assembler.pipeline.MEM;
 
 /**
  * Tests for ControlUnit with dependency injection support

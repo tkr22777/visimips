@@ -74,17 +74,17 @@ ifneq ($(TEST_FILES),)
 	@echo "Running all tests..."
 	@java -cp $(CLASSES_DIR):$(TEST_CLASSES_DIR):$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore \
 		assembler.ALUTest \
-		assembler.WBTest \
-		assembler.MEMTest \
-		assembler.MEM_WB_PipelineTest \
-		assembler.ControlUnitTest \
-		assembler.ForwardingUnitTest \
-		assembler.HazardDetectionUnitTest \
-		assembler.ID_EX_PipelineTest \
-		assembler.IF_ID_PipelineTest \
-		assembler.EX_MEM_PipelineTest \
-		assembler.InstructionTest \
-		assembler.AssemblyCodeTest
+		assembler.pipeline.WBTest \
+		assembler.pipeline.MEMTest \
+		assembler.pipeline.MEM_WB_PipelineTest \
+		assembler.control.ControlUnitTest \
+		assembler.control.ForwardingUnitTest \
+		assembler.control.HazardDetectionUnitTest \
+		assembler.pipeline.ID_EX_PipelineTest \
+		assembler.pipeline.IF_ID_PipelineTest \
+		assembler.pipeline.EX_MEM_PipelineTest \
+		assembler.instruction.InstructionTest \
+		assembler.instruction.AssemblyCodeTest
 	@echo "Test run complete!"
 else
 	@echo "No test files found. Skipping tests."

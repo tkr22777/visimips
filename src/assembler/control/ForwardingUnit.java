@@ -3,23 +3,24 @@
  * Tahsin Kabir
  * M Tahmid Bari
  */
-package assembler;
+package assembler.control;
+
 import java.io.Serializable;
 
 public class ForwardingUnit implements Serializable {
 
-    int rs;
-    int rt;
-    int RegWriteExMemAdd;
-    int RegWriteExMemValue;
-    int RegWriteMemWbAdd;
-    int RegWriteMemWbValue;
-    int rsValue;
-    int rtValue;
-    boolean RegWriteExMemFlag = false;
-    boolean RegWriteMemWbFlag = false;
+    public int rs;
+    public int rt;
+    public int RegWriteExMemAdd;
+    public int RegWriteExMemValue;
+    public int RegWriteMemWbAdd;
+    public int RegWriteMemWbValue;
+    public int rsValue;
+    public int rtValue;
+    public boolean RegWriteExMemFlag = false;
+    public boolean RegWriteMemWbFlag = false;
 
-    ForwardingUnit() {
+    public ForwardingUnit() {
         rs = -2;
         rt = -2;
 
@@ -31,7 +32,7 @@ public class ForwardingUnit implements Serializable {
         RegWriteMemWbFlag = false;
     }
 
-    int valueMuxA() {
+    public int valueMuxA() {
         if (rs == RegWriteExMemAdd && RegWriteExMemFlag) {
             return RegWriteExMemValue;
         } else if (rs == RegWriteMemWbAdd && RegWriteMemWbFlag) {
@@ -41,7 +42,7 @@ public class ForwardingUnit implements Serializable {
         }
     }
 
-    int valueMuxB() {
+    public int valueMuxB() {
         if (rt == RegWriteExMemAdd && RegWriteExMemFlag) {
             return RegWriteExMemValue;
         } else if (rt == RegWriteMemWbAdd && RegWriteMemWbFlag) {
@@ -50,16 +51,18 @@ public class ForwardingUnit implements Serializable {
             return rtValue;
         }
     }
-    int selectMuxA(){
+
+    public int selectMuxA() {
         if (rs == RegWriteExMemAdd && RegWriteExMemFlag) {
             return 2;
         } else if (rs == RegWriteMemWbAdd && RegWriteMemWbFlag) {
             return 1;
         } else {
             return 0;
-        }        
+        }
     }
-    int selectMuxB() {
+
+    public int selectMuxB() {
 
         if (rt == RegWriteExMemAdd && RegWriteExMemFlag) {
             return 2;

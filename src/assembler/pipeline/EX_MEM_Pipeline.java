@@ -9,14 +9,14 @@ import java.io.Serializable;
 
 public class EX_MEM_Pipeline implements Serializable {
 
-    WB WB;
-    MEM MEM;
-    int PCBranch;
-    int ALU_result;
-    boolean ALU_zero;
-    int MemDataWrite;
-    int destReg;
-    String iString;
+    public WB WB;
+    public MEM MEM;
+    public int PCBranch;
+    public int ALU_result;
+    public boolean ALU_zero;
+    public int MemDataWrite;
+    public int destReg;
+    public String iString;
 
     /**
      * Default constructor
@@ -46,7 +46,7 @@ public class EX_MEM_Pipeline implements Serializable {
         this.iString = "NOP";
     }
 
-    void Flush() {
+    public void Flush() {
         WB.MemToReg = false;
         WB.RegWrite = false;
         MEM.MemRead = false;

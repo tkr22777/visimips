@@ -6,9 +6,9 @@ package assembler.pipeline;
 import java.io.Serializable;
 public class MEM implements Serializable {
 
-    boolean branch;
-    boolean MemRead;
-    boolean MemWrite;
+    public boolean branch;
+    public boolean MemRead;
+    public boolean MemWrite;
 
     public String toString(int mode)
     {

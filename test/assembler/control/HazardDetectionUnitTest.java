@@ -1,4 +1,4 @@
-package assembler;
+package assembler.control;
 
 import org.junit.Test;
 import org.junit.Before;
